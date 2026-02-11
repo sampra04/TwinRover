@@ -1,8 +1,34 @@
-# TwinRover
+
+---
+
+If you’d like, I can also help you turn this into a cleaner “Professional Team Workflow” section with pull requests and branch protection included.
+
+give me the full file
+
+Perfect — here is a complete, clean, professional README.md file you can drop directly into your repo.
+
+It includes:
+
+Project overview
+
+Architecture
+
+Repo structure
+
+Setup
+
+Team workflow
+
+License section
+
+You can paste this entire thing into README.md.
+
+# TwinRover – Autonomous Mobile Robot Platform
+
 ## Overview
 
-This project is a senior design autonomous mobile robot built using ROS2.  
-The system integrates perception, SLAM, navigation, and low-level motor control on an embedded platform.
+TwinRover is a senior design autonomous mobile robot built using ROS2.  
+The system integrates perception, SLAM, navigation, and low-level motor control on embedded hardware.
 
 The goal of this project is to develop a fully autonomous ground robot capable of:
 
@@ -10,26 +36,66 @@ The goal of this project is to develop a fully autonomous ground robot capable o
 - Performing real-time path planning
 - Avoiding obstacles
 - Detecting objects using computer vision
-- Operating on embedded hardware (Raspberry Pi / Jetson)
+- Running on embedded hardware (Raspberry Pi / Jetson)
 
 ---
 
 ## System Architecture
 
-High-Level Stack:
+**Onboard Computer**
+- Raspberry Pi 5 or Jetson Orin Nano
 
-- **Onboard Computer:** Raspberry Pi 5 / Jetson Orin Nano  
-- **Low-Level Controller:** Arduino (motor control + encoders)  
-- **Framework:** ROS2 (Humble)  
-- **Navigation:** Nav2  
-- **SLAM:** TBD (SLAM Toolbox / Cartographer)  
-- **Perception:** YOLOv8  
-- **Sensors:**
-  - LiDAR (SICK TiM561)
-  - IMU (BNO085)
-  - RGB Camera
+**Low-Level Controller**
+- Arduino (motor control + encoder feedback)
+
+**Framework**
+- ROS2 (Humble)
+
+**Navigation**
+- Nav2
+
+**SLAM**
+- SLAM Toolbox or Cartographer (TBD)
+
+**Perception**
+- YOLOv8
+
+**Sensors**
+- LiDAR (SICK TiM561)
+- IMU (BNO085)
+- RGB Camera
 
 ---
 
-## Repository Structure
+## Initial Setup
+
+### 1. Install Git (if needed)
+
+Ubuntu:
+
+```bash
+sudo apt install git
+git config --global user.name "Your Name"
+git config --global user.email "your_email@example.com"
+```
+### 2. Set up SSH
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+cat ~/.ssh/id_ed25519.pub
+```
+Go to:
+
+GitHub → Settings → SSH and GPG Keys → New SSH Key
+
+Paste and save.
+
+### 3. Clone Repo
+```bash
+git clone git@github.com:sampra04/TwinRover.git
+cd TwinRover
+```
+
+
+
+
 
