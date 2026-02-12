@@ -73,6 +73,29 @@ cd TwinRover
 ```
 
 
+### 2. Alias file setup
+
+Open your bashrc file
+
+```bash
+nano ~/.bashrc
+```
+Copy paste these lines into the bashrc
+
+```bash
+if [ -f (path_to_git_repo)/.bash_aliases ]; then
+    .(path_to_git_repo)/.bash_aliases
+fi
+```
+
+Source bashrc
+```bash
+source ~/.bashrc
+```
+
+
+
+
 
 
 
