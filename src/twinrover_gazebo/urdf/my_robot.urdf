@@ -267,8 +267,10 @@
 <!-- ================= GAZEBO LIDAR ================= -->
 <gazebo reference="lidar_link">
   <material>Gazebo/Blue</material>
+
   <sensor type="ray" name="lidar">
     <update_rate>15</update_rate>
+
     <ray>
       <scan>
         <horizontal>
@@ -290,10 +292,9 @@
       <frame_name>lidar_link</frame_name>
     </plugin>
 
-
-
   </sensor>
 </gazebo>
+
 
 
 </robot>
