@@ -21,7 +21,7 @@
     </collision>
 
     <inertial>
-      <origin xyz="0.02 0 -0.01"/>
+      <origin xyz="0 0 0"/>
       <mass value="6.8"/>
       <inertia
         ixx="0.089" ixy="0.0" ixz="0.0"
@@ -193,7 +193,7 @@
   <joint name="lidar_joint" type="fixed">
     <parent link="base_link"/>
     <child link="lidar_link"/>
-    <origin xyz="0 0 0.1905"/>
+    <origin xyz="0 0 0.22"/>
   </joint>
 
   <!-- ================= GAZEBO DIFF DRIVE ================= -->
@@ -214,6 +214,7 @@
       <max_wheel_acceleration>1.0</max_wheel_acceleration>
       <command_timeout>0.5</command_timeout>
       <odometry_frame>odom</odometry_frame>
+      <odometry_source>world</odometry_source>
     </plugin>
   </gazebo>
 
