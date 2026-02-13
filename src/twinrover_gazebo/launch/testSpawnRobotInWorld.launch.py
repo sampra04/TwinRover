@@ -27,15 +27,16 @@ def generate_launch_description():
             launch_arguments={'world': world_path}.items(),
         ),
 
-        # Publish robot description
         Node(
             package='robot_state_publisher',
             executable='robot_state_publisher',
             output='screen',
             parameters=[{
-                'robot_description': open(urdf_path).read()
+                'robot_description': open(urdf_path).read(),
+                'use_sim_time': True
             }]
         ),
+
 
         # Spawn robot into Gazebo
         Node(
