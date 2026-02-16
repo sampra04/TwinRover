@@ -1,0 +1,42 @@
+frontier_explorer:
+  ros__parameters:
+    update_rate_hz: 1.0
+    min_frontier_cells: 12
+    unknown_gain_weight: 1.0
+    distance_weight: 0.7
+    risk_weight: 0.8
+    goal_timeout_s: 45.0
+    blacklist_duration_s: 90.0
+    completion_empty_cycles: 5
+    safety_clearance_m: 0.30
+    map_topic: /map
+    manual_mode_topic: /exploration/manual_mode
+    status_topic: /exploration/status
+    frontier_marker_topic: /exploration/frontiers
+
+map_saver_periodic:
+  ros__parameters:
+    autosave_interval_s: 120.0
+    output_dir: maps
+    status_topic: /exploration/status
+    save_map_timeout_s: 10.0
+    map_url_prefix: warehouse_map
+
+status_monitor:
+  ros__parameters:
+    status_topic: /exploration/status
+    heartbeat_topic: /exploration/heartbeat
+    heartbeat_rate_hz: 1.0
+    stuck_timeout_s: 20.0
+    no_progress_radius_m: 0.20
+
+teleop_override:
+  ros__parameters:
+    toggle_topic: /exploration/manual_toggle
+    manual_mode_topic: /exploration/manual_mode
+    status_topic: /exploration/status
+    cmd_vel_auto_topic: /cmd_vel_auto
+    cmd_vel_manual_topic: /cmd_vel_manual
+    cmd_vel_output_topic: /cmd_vel
+    max_linear: 0.4
+    max_angular: 1.2
