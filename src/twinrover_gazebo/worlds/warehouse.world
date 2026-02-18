@@ -34,8 +34,9 @@
         <collision name="r1_brc"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
 
         <!-- SHELVES -->
-        <visual name="r1_s1v"><pose>0 0 0.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
-        <collision name="r1_s1c"><pose>0 0 0.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+        <!-- Bottom shelf: thicker/taller for LiDAR detection -->
+        <visual name="r1_s1v"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></visual>
+        <collision name="r1_s1c"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></collision>
 
         <visual name="r1_s2v"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
         <collision name="r1_s2c"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
@@ -75,8 +76,9 @@
         <collision name="r2_brc"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
 
         <!-- SHELVES -->
-        <visual name="r2_s1v"><pose>0 0 0.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
-        <collision name="r2_s1c"><pose>0 0 0.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+        <!-- Bottom shelf: thicker/taller for LiDAR detection -->
+        <visual name="r2_s1v"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></visual>
+        <collision name="r2_s1c"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></collision>
 
         <visual name="r2_s2v"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
         <collision name="r2_s2c"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
@@ -99,9 +101,7 @@
       <pose>0 3 0 0 0 0</pose>
       <link name="rack3">
 
-        <!-- SAME STRUCTURE AS ABOVE (shortened here for space in explanation) -->
-        <!-- Duplicate same geometry as row 1 -->
-
+        <!-- POSTS -->
         <visual name="r3_flv"><pose>-9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
         <collision name="r3_flc"><pose>-9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
 
@@ -114,8 +114,10 @@
         <visual name="r3_brv"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
         <collision name="r3_brc"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
 
-        <visual name="r3_s1v"><pose>0 0 0.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
-        <collision name="r3_s1c"><pose>0 0 0.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+        <!-- SHELVES -->
+        <!-- Bottom shelf: thicker/taller for LiDAR detection -->
+        <visual name="r3_s1v"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></visual>
+        <collision name="r3_s1c"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></collision>
 
         <visual name="r3_s2v"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
         <collision name="r3_s2c"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
@@ -138,8 +140,7 @@
       <pose>0 9 0 0 0 0</pose>
       <link name="rack4">
 
-        <!-- Same duplicated structure again -->
-
+        <!-- POSTS -->
         <visual name="r4_flv"><pose>-9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
         <collision name="r4_flc"><pose>-9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
 
@@ -152,8 +153,10 @@
         <visual name="r4_brv"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
         <collision name="r4_brc"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
 
-        <visual name="r4_s1v"><pose>0 0 0.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
-        <collision name="r4_s1c"><pose>0 0 0.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+        <!-- SHELVES -->
+        <!-- Bottom shelf: thicker/taller for LiDAR detection -->
+        <visual name="r4_s1v"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></visual>
+        <collision name="r4_s1c"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></collision>
 
         <visual name="r4_s2v"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
         <collision name="r4_s2c"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
@@ -207,8 +210,9 @@
         <visual name="vis"><geometry><box><size>24 0.2 4</size></box></geometry></visual>
       </link>
     </model>
-  <!-- ================= BOXES START ================= -->
 
-  
+    <!-- ================= BOXES START ================= -->
+    <!-- (you can add boxes here later) -->
+
   </world>
 </sdf>
