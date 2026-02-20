@@ -1,0 +1,369 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <world name="warehouse">
+
+    <!-- ================= GROUND ================= -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- ================================================= -->
+    <!-- =============== SHELF ROW 1 ===================== -->
+    <!-- ================================================= -->
+
+    <model name="shelf_row_1">
+      <static>true</static>
+      <pose>0 -9 0 0 0 0</pose>
+      <link name="rack1">
+
+        <!-- POSTS -->
+        <visual name="r1_flv"><pose>-9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r1_flc"><pose>-9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <visual name="r1_frv"><pose>9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r1_frc"><pose>9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <visual name="r1_blv"><pose>-9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r1_blc"><pose>-9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <visual name="r1_brv"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r1_brc"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <!-- SHELVES -->
+        <!-- Bottom shelf: thicker/taller for LiDAR detection -->
+        <visual name="r1_s1v"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></visual>
+        <collision name="r1_s1c"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></collision>
+
+        <visual name="r1_s2v"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r1_s2c"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+        <visual name="r1_s3v"><pose>0 0 1.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r1_s3c"><pose>0 0 1.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+        <visual name="r1_s4v"><pose>0 0 1.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r1_s4c"><pose>0 0 1.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+        <visual name="r1_s5v"><pose>0 0 2.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r1_s5c"><pose>0 0 2.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+      </link>
+    </model>
+
+    <!-- ================================================= -->
+    <!-- =============== SHELF ROW 2 ===================== -->
+    <!-- ================================================= -->
+
+    <model name="shelf_row_2">
+      <static>true</static>
+      <pose>0 -3 0 0 0 0</pose>
+      <link name="rack2">
+
+        <!-- POSTS -->
+        <visual name="r2_flv"><pose>-9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r2_flc"><pose>-9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <visual name="r2_frv"><pose>9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r2_frc"><pose>9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <visual name="r2_blv"><pose>-9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r2_blc"><pose>-9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <visual name="r2_brv"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r2_brc"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <!-- SHELVES -->
+        <!-- Bottom shelf: thicker/taller for LiDAR detection -->
+        <visual name="r2_s1v"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></visual>
+        <collision name="r2_s1c"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></collision>
+
+        <visual name="r2_s2v"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r2_s2c"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+        <visual name="r2_s3v"><pose>0 0 1.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r2_s3c"><pose>0 0 1.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+        <visual name="r2_s4v"><pose>0 0 1.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r2_s4c"><pose>0 0 1.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+        <visual name="r2_s5v"><pose>0 0 2.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r2_s5c"><pose>0 0 2.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+      </link>
+    </model>
+
+    <!-- ================= SHELF ROW 3 ================= -->
+    <model name="shelf_row_3">
+      <static>true</static>
+      <pose>0 3 0 0 0 0</pose>
+      <link name="rack3">
+
+        <!-- POSTS -->
+        <visual name="r3_flv"><pose>-9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r3_flc"><pose>-9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <visual name="r3_frv"><pose>9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r3_frc"><pose>9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <visual name="r3_blv"><pose>-9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r3_blc"><pose>-9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <visual name="r3_brv"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r3_brc"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <!-- SHELVES -->
+        <!-- Bottom shelf: thicker/taller for LiDAR detection -->
+        <visual name="r3_s1v"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></visual>
+        <collision name="r3_s1c"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></collision>
+
+        <visual name="r3_s2v"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r3_s2c"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+        <visual name="r3_s3v"><pose>0 0 1.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r3_s3c"><pose>0 0 1.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+        <visual name="r3_s4v"><pose>0 0 1.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r3_s4c"><pose>0 0 1.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+        <visual name="r3_s5v"><pose>0 0 2.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r3_s5c"><pose>0 0 2.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+      </link>
+    </model>
+
+    <!-- ================= SHELF ROW 4 ================= -->
+    <model name="shelf_row_4">
+      <static>true</static>
+      <pose>0 9 0 0 0 0</pose>
+      <link name="rack4">
+
+        <!-- POSTS -->
+        <visual name="r4_flv"><pose>-9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r4_flc"><pose>-9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <visual name="r4_frv"><pose>9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r4_frc"><pose>9.95 -0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <visual name="r4_blv"><pose>-9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r4_blc"><pose>-9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <visual name="r4_brv"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></visual>
+        <collision name="r4_brc"><pose>9.95 0.45 1.25 0 0 0</pose><geometry><box><size>0.1 0.1 2.5</size></box></geometry></collision>
+
+        <!-- SHELVES -->
+        <!-- Bottom shelf: thicker/taller for LiDAR detection -->
+        <visual name="r4_s1v"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></visual>
+        <collision name="r4_s1c"><pose>0 0 0.30 0 0 0</pose><geometry><box><size>19.8 1 0.25</size></box></geometry></collision>
+
+        <visual name="r4_s2v"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r4_s2c"><pose>0 0 0.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+        <visual name="r4_s3v"><pose>0 0 1.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r4_s3c"><pose>0 0 1.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+        <visual name="r4_s4v"><pose>0 0 1.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r4_s4c"><pose>0 0 1.7 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+        <visual name="r4_s5v"><pose>0 0 2.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></visual>
+        <collision name="r4_s5c"><pose>0 0 2.2 0 0 0</pose><geometry><box><size>19.8 1 0.05</size></box></geometry></collision>
+
+      </link>
+    </model>
+
+    <!-- ================= WALLS ================= -->
+
+    <model name="wall_back">
+      <static>true</static>
+      <pose>-12 0 2 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.2 23 4</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.2 23 4</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="wall_front">
+      <static>true</static>
+      <pose>12 0 2 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.2 23 4</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.2 23 4</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="wall_left">
+      <static>true</static>
+      <pose>0 -11.5 2 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>24 0.2 4</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>24 0.2 4</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="wall_right">
+      <static>true</static>
+      <pose>0 11.5 2 0 0 0</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>24 0.2 4</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>24 0.2 4</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <!-- ================= BOXES START ================= -->
+    <!-- (you can add boxes here later) -->
+    <!-- ================= RANDOM OBJECTS ================= -->
+
+        <!-- ================= STAGGERED BOX CLUTTER ================= -->
+
+    <!-- ================================================= -->
+    <!-- ================= AISLE 1 (~ -6 Y) =============== -->
+    <!-- ================================================= -->
+
+    <model name="a1_box_1">
+      <static>true</static>
+      <pose>-7 -6.8 0.4 0 0 0.2</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.8 0.6 0.8</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.8 0.6 0.8</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="a1_box_2">
+      <static>true</static>
+      <pose>-2 -5.2 0.5 0 0 -0.3</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>1.0 0.7 1.0</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>1.0 0.7 1.0</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="a1_box_3">
+      <static>true</static>
+      <pose>3 -6.4 0.4 0 0 0.6</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.7 0.9 0.8</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.7 0.9 0.8</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="a1_box_4">
+      <static>true</static>
+      <pose>6 -5.4 0.6 0 0 -0.4</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.9 0.8 1.2</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.9 0.8 1.2</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="a1_box_5">
+      <static>true</static>
+      <pose>0 -6.1 0.45 0 0 0.1</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.6 0.6 0.9</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.6 0.6 0.9</size></box></geometry></visual>
+      </link>
+    </model>
+
+
+    <!-- ================================================= -->
+    <!-- ================= AISLE 2 (~ 0 Y) =============== -->
+    <!-- ================================================= -->
+
+    <model name="a2_box_1">
+      <static>true</static>
+      <pose>-8 0.9 0.5 0 0 0.4</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>1.0 0.6 1.0</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>1.0 0.6 1.0</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="a2_box_2">
+      <static>true</static>
+      <pose>-3 -0.8 0.4 0 0 -0.5</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.7 0.8 0.8</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.7 0.8 0.8</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="a2_box_3">
+      <static>true</static>
+      <pose>2 0.6 0.6 0 0 0.7</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.9 0.9 1.2</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.9 0.9 1.2</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="a2_box_4">
+      <static>true</static>
+      <pose>6 -0.7 0.5 0 0 -0.2</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.8 0.7 1.0</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.8 0.7 1.0</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="a2_box_5">
+      <static>true</static>
+      <pose>0 0.3 0.45 0 0 0.1</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.6 0.6 0.9</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.6 0.6 0.9</size></box></geometry></visual>
+      </link>
+    </model>
+
+
+    <!-- ================================================= -->
+    <!-- ================= AISLE 3 (~ 6 Y) =============== -->
+    <!-- ================================================= -->
+
+    <model name="a3_box_1">
+      <static>true</static>
+      <pose>-6 6.7 0.5 0 0 -0.3</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>1.0 0.6 1.0</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>1.0 0.6 1.0</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="a3_box_2">
+      <static>true</static>
+      <pose>-1 5.2 0.4 0 0 0.5</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.7 0.8 0.8</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.7 0.8 0.8</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="a3_box_3">
+      <static>true</static>
+      <pose>3 6.4 0.6 0 0 -0.4</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.9 0.9 1.2</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.9 0.9 1.2</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="a3_box_4">
+      <static>true</static>
+      <pose>7 5.5 0.5 0 0 0.3</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.8 0.7 1.0</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.8 0.7 1.0</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="a3_box_5">
+      <static>true</static>
+      <pose>0 6.1 0.45 0 0 0.2</pose>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.6 0.6 0.9</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.6 0.6 0.9</size></box></geometry></visual>
+      </link>
+    </model>
+  </world>
+</sdf>
