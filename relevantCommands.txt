@@ -11,3 +11,25 @@ ros2 run slam_toolbox async_slam_toolbox_node \
 ros2 launch nav2_bringup navigation_launch.py use_sim_time:=true
 
 ros2 run frontier_explorer explore
+
+
+step 1
+ros2 launch twinrover_gazebo warehouse.launch.py
+
+step 2 - new termnial
+ros2 run slam_toolbox async_slam_toolbox_node \
+  --ros-args \
+  -p use_sim_time:=true \
+  -p base_frame:=base_link \
+  -p odom_frame:=odom \
+  -p map_frame:=map \
+  -p scan_topic:=/scan
+
+step 3 - new termnial
+ros2 launch nav2_bringup navigation_launch.py use_sim_time:=true
+
+step 4 - new termnial
+rviz2
+
+step 5 - new termnial
+ros2 run frontier_explorer explore
