@@ -1,0 +1,13 @@
+frontier_explorer_hardened:
+  ros__parameters:
+    update_rate_hz: 1.0
+    min_frontier_cells: 12
+    unknown_gain_weight: 1.0
+    distance_weight: 0.7
+    risk_weight: 0.8
+    goal_timeout_s: 45.0
+    blacklist_duration_s: 90.0
+    completion_empty_cycles: 5
+    safety_clearance_m: 0.30
+    map_topic: /map
+    odom_topic: /odom

@@ -10,6 +10,8 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        ('share/' + package_name + '/config', ['config/exploration_hardened.yaml']),
+        ('share/' + package_name + '/launch', ['launch/frontier_explorer_hardened.launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -25,6 +27,7 @@ setup(
     entry_points={
     'console_scripts': [
         'explore = frontier_explorer.frontier_explorer:main',
+        'explore_hardened = frontier_explorer.frontier_explorer_hardened:main',
     ],
     },
 
