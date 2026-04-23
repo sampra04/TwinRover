@@ -27,6 +27,7 @@ setup(
             'map_saver_periodic = twinrover_exploration.map_saver_periodic:main',
             'status_monitor = twinrover_exploration.status_monitor:main',
             'teleop_override = twinrover_exploration.teleop_override:main',
+            'stall_guard = twinrover_exploration.stall_guard:main',
         ],
     },
 )

@@ -25,3 +25,7 @@ Thumbs.db
 
 # Datasets
 perception/datasets/
+kiss-icp/
+src/m-explore-ros2/
+src/roboclaw_hardware_interface/
+src/roboclaw_serial/

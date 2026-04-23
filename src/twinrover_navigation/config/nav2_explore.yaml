@@ -1,10 +1,10 @@
 amcl:
   ros__parameters:
-    use_sim_time: true
+    use_sim_time: false
 
 bt_navigator:
   ros__parameters:
-    use_sim_time: true
+    use_sim_time: false
     global_frame: map
     robot_base_frame: base_link
     odom_topic: /odom
@@ -13,9 +13,9 @@ bt_navigator:
 
 controller_server:
   ros__parameters:
-    use_sim_time: true
+    use_sim_time: false
     controller_frequency: 10.0
-    cmd_vel_topic: /cmd_vel_auto
+    cmd_vel_topic: /cmd_vel
     min_x_velocity_threshold: 0.001
     min_theta_velocity_threshold: 0.001
     controller_plugins: ["FollowPath"]
@@ -43,7 +43,7 @@ controller_server:
 local_costmap:
   local_costmap:
     ros__parameters:
-      use_sim_time: true
+      use_sim_time: false
       global_frame: odom
       robot_base_frame: base_link
       update_frequency: 5.0
@@ -74,7 +74,7 @@ local_costmap:
 global_costmap:
   global_costmap:
     ros__parameters:
-      use_sim_time: true
+      use_sim_time: false
       global_frame: map
       robot_base_frame: base_link
       update_frequency: 1.0
@@ -105,11 +105,11 @@ global_costmap:
 
 map_server:
   ros__parameters:
-    use_sim_time: true
+    use_sim_time: false
 
 planner_server:
   ros__parameters:
-    use_sim_time: true
+    use_sim_time: false
     expected_planner_frequency: 2.0
     planner_plugins: ["GridBased"]
     GridBased:
@@ -120,23 +120,23 @@ planner_server:
 
 behavior_server:
   ros__parameters:
-    use_sim_time: true
+    use_sim_time: false
 
 smoother_server:
   ros__parameters:
-    use_sim_time: true
+    use_sim_time: false
 
 velocity_smoother:
   ros__parameters:
-    use_sim_time: true
+    use_sim_time: false
 
 waypoint_follower:
   ros__parameters:
-    use_sim_time: true
+    use_sim_time: false
 
 lifecycle_manager:
   ros__parameters:
-    use_sim_time: true
+    use_sim_time: false
     autostart: true
     node_names: [
       "controller_server",

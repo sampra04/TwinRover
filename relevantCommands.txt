@@ -33,3 +33,18 @@ rviz2
 
 step 5 - new termnial
 ros2 run frontier_explorer explore
+
+ros2 launch twinrover_description robot_state_publisher.launch.py
+
+ros2 launch twinrover_bringup navigation_launch.py   params_file:=/home/twinrover/TwinRover/src/twinrover_bringup/config/nav2_params.yaml   use_sim_time:=false
+
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+
+ros2 launch foxglove_bridge foxglove_bridge_launch.xml 
+
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist \
+  "{linear: {x: 0.1}, angular: {z: 0.0}}" --rate 10
+
+source ~/venv/bin/activate
+python3 object_fusion_node.py
+ros2 run usb_cam usb_cam_node_exe --ros-args -p video_device:=/dev/video0 -p image_width:=640 -p image_height:=480

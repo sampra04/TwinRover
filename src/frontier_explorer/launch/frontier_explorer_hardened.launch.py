@@ -23,8 +23,8 @@ def generate_launch_description():
         ),
         Node(
             package='frontier_explorer',
-            executable='explore_hardened',
-            name='frontier_explorer_hardened',
+            executable='explore',
+            name='frontier_explorer',
             output='screen',
             parameters=[params_file],
         ),

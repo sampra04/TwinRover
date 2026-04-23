@@ -1,3 +1,7 @@
+map_saver:
+  ros__parameters:
+    output_dir: ~/maps
+
 frontier_explorer_hardened:
   ros__parameters:
     update_rate_hz: 1.0

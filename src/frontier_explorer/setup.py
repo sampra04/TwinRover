@@ -11,7 +11,10 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/config', ['config/exploration_hardened.yaml']),
-        ('share/' + package_name + '/launch', ['launch/frontier_explorer_hardened.launch.py']),
+        ('share/' + package_name + '/launch', [
+            'launch/frontier_explorer_hardened.launch.py',
+            'launch/frontier_explorer.launch.py',
+        ]),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -28,6 +31,7 @@ setup(
     'console_scripts': [
         'explore = frontier_explorer.frontier_explorer:main',
         'explore_hardened = frontier_explorer.frontier_explorer_hardened:main',
+        'map_saver = frontier_explorer.map_saver:main',
     ],
     },
 

@@ -1,0 +1,21 @@
+slam_toolbox:
+  ros__parameters:
+    base_frame:  base_link
+    odom_frame:  odom
+    map_frame:   map
+    scan_topic:  /scan
+    mode: mapping
+    use_sim_time: false
+    resolution: 0.05
+    max_laser_range: 10.0
+    minimum_time_interval: 0.1      # was 0.2 — only process 2 scans/sec, reduces CPU load
+    transform_timeout: 1.0          # was 0.2 — give Pi 5x more time to look up TF
+    tf_buffer_duration: 30.0
+    throttle_scans: 1              # ADD — only process every 3rd scan
+    do_loop_closing: true
+    loop_search_maximum_distance: 2.0
+    loop_match_minimum_response_fine: 0.45
+    map_start_at_dock: false
+    minimum_travel_distance: 0.3    # was default 0.5m — update even with no movement
+    minimum_travel_heading: 0.15
+    map_update_interval: 0.1    # publish map every 0.2s (5Hz)
