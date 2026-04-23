@@ -427,6 +427,18 @@
       z-index: 1;
     }
 
+    /* RESEARCH */
+    .research-body {
+      max-width: 760px;
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--text-muted);
+    }
+
+    .research-body p { margin-bottom: 1.25rem; }
+    .research-body p:last-child { margin-bottom: 0; }
+    .research-body strong { color: var(--gold); font-weight: 500; }
+
     /* TEAM */
     .team-grid {
       display: grid;
@@ -439,23 +451,32 @@
       padding: 1.5rem;
       text-align: center;
       transition: border-color 0.2s;
+      position: relative;
     }
 
     .team-card:hover { border-color: var(--gold-dim); }
 
     .avatar {
-      width: 52px;
-      height: 52px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      background: transparent;
+      background: #1a1a1a;
       border: 1.5px solid var(--gold);
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'DM Mono', monospace;
-      font-size: 14px;
+      font-size: 20px;
       color: var(--gold);
       margin: 0 auto 1rem;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
     .team-card h3 {
@@ -465,10 +486,31 @@
       margin-bottom: 4px;
     }
 
-    .team-card p {
+    .team-role {
       font-size: 12px;
       color: var(--text-muted);
+      margin-bottom: 1rem;
     }
+
+    .team-links {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .team-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--gold-dim);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      border: 0.5px solid var(--dark-border);
+      padding: 3px 8px;
+      border-radius: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .team-link:hover { color: var(--gold); border-color: var(--gold-dim); }
 
     /* FOOTER */
     footer {
@@ -528,6 +570,7 @@
     <a href="#" class="nav-logo">TWINROVER</a>
     <ul class="nav-links">
       <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#research">Research</a></li>
       <li><a href="#use-cases">Use cases</a></li>
       <li><a href="#specs">Specs</a></li>
       <li><a href="#team">Team</a></li>
@@ -579,6 +622,16 @@
         <h3>Detect & log</h3>
         <p>YOLOv8 object detection runs concurrently, identifying and logging items of interest throughout the mapped environment.</p>
       </div>
+    </div>
+  </section>
+
+  <section id="research" class="light">
+    <div class="section-label">Research context</div>
+    <h2 class="section-title">Why this matters now</h2>
+    <div class="research-body">
+      <p>Scene reconstruction is a rapidly maturing area of research. Techniques such as Neural Radiance Fields (NeRF), <strong>3D Gaussian Splatting</strong>, and emerging methods like CUT3R have demonstrated remarkable fidelity in recovering dense 3D structure from sparse image inputs. The demand for these capabilities is being driven by an expanding landscape of spatial computing applications — from augmented and mixed reality experiences like <strong>Apple Vision Pro and Meta Quest</strong> that overlay virtual content onto reconstructed physical spaces, to game development pipelines where studios capture real-world geometry for photorealistic environments in first-person titles, to robotics simulation where accurate scene models are critical for training and validation.</p>
+      <p>However, rigorous evaluation of reconstruction models demands consistent, repeatable capture conditions — something difficult to guarantee with handheld or ad hoc collection setups. Variations in capture speed, trajectory, sensor height, and lighting introduce uncontrolled variables that make cross-model comparison unreliable.</p>
+      <p>TwinRover addresses this gap directly. By providing a <strong>standardized, autonomous capture platform</strong>, it enables researchers to benchmark reconstruction algorithms against datasets collected under controlled, reproducible conditions. The robot's consistent trajectory, speed, and sensor configuration eliminate capture-side variables — isolating model performance as the sole experimental factor. This positions TwinRover not only as a practical mapping tool, but as <strong>a research instrument for the scene reconstruction community</strong>, lowering the barrier to rigorous, comparable evaluation of the next generation of spatial AI models.</p>
     </div>
   </section>
 
@@ -648,31 +701,89 @@
     </div>
   </section>
 
-  <section id="team" class="light">
+  <section id="team">
     <div class="section-label">Team</div>
     <h2 class="section-title">Built at Purdue</h2>
     <p class="section-sub">A multidisciplinary team of engineers working at the intersection of robotics, software, and autonomy.</p>
     <div class="team-grid">
+
       <div class="team-card">
-        <div class="avatar">S</div>
-        <h3>Samar</h3>
-        <p>Robotics & software lead</p>
+        <div class="avatar">
+          <img src="https://i.imgur.com/rJNI6Z9.png" alt="Samar" onerror="this.style.display='none'" />
+      
+        </div>
+        <h3>Samarth Prashanth</h3>
+        <div class="team-role">Software and Robotics Lead</div>
+        <div class="team-links">
+          <a href="https://www.linkedin.com/in/samarthprash/" target="_blank" class="team-link">LinkedIn</a>
+        </div>
       </div>
+
       <div class="team-card">
-        <div class="avatar">?</div>
-        <h3>Team member</h3>
-        <p>Role</p>
+        <div class="avatar">
+          <img src="https://i.imgur.com/5KwQt9m.jpeg" alt="Member 2" onerror="this.style.display='none'" />
+          
+        </div>
+        <h3>Aiden Hayes</h3>
+        <div class="team-role">Software and Reconstruction lead</div>
+        <div class="team-links">
+          <a href="https://www.linkedin.com/in/aiden-hayes247/" class="team-link">LinkedIn</a>
+        </div>
       </div>
+
       <div class="team-card">
-        <div class="avatar">?</div>
-        <h3>Team member</h3>
-        <p>Role</p>
+        <div class="avatar">
+          <img src="https://i.imgur.com/tAIk5Eq.jpeg" alt="Member 3" onerror="this.style.display='none'" />
+          
+        </div>
+        <h3>Brandon Kurecki</h3>
+        <div class="team-role">Mechanical Design Lead</div>
+        <div class="team-links">
+          <a href="https://www.linkedin.com/in/brandonkurecki/" class="team-link">LinkedIn</a>
+        </div>
       </div>
+
+      <div class="team-card">
+        <div class="avatar">
+          <img src="https://i.imgur.com/W7R58bL.png" alt="Member 4" onerror="this.style.display='none'" />
+          
+        </div>
+        <h3>Max Palmer</h3>
+        <div class="team-role">Mechanical Design and Integration Lead</div>
+        <div class="team-links">
+          <a href="https://www.linkedin.com/in/maxpalmer2026/" class="team-link">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="avatar">
+          <img src="https://i.imgur.com/0t6VuDx.png" alt="Member 5" onerror="this.style.display='none'" />
+          
+        </div>
+        <h3>Aarav Bathija</h3>
+        <div class="team-role">Mechanical Design and Manufacturing Lead</div>
+        <div class="team-links">
+          <a href="https://www.linkedin.com/in/aarav-bathija/" class="team-link">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="avatar">
+          <img src="https://i.imgur.com/Impw8TQ.jpeg" alt="Member 6" onerror="this.style.display='none'" />
+          
+        </div>
+        <h3>Rohan Jeyasothy</h3>
+        <div class="team-role">Electronics and Image Processing Lead</div>
+        <div class="team-links">
+          <a href="https://www.linkedin.com/in/rohan-jeyasothy/" class="team-link">LinkedIn</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <footer>
-    <div class="footer-left">TwinRover · Purdue University · 2025</div>
+    <div class="footer-left">TwinRover · Purdue University · 2026</div>
     <div class="footer-right">
       <a href="https://github.com/sampra04/TwinRover" target="_blank">GitHub</a>
       <a href="mailto:">Contact</a>
