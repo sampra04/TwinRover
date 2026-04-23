@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TwinRover — Autonomous 3D Mapping</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #CFB991;
+      --gold-dim: #a8966e;
+      --gold-faint: #6b5f45;
+      --black: #000000;
+      --dark: #0a0a0a;
+      --dark-mid: #111111;
+      --dark-border: #222222;
+      --white: #ffffff;
+      --off-white: #f5f3ef;
+      --text-muted: #777777;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--dark-border);
+    }
+
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--gold-dim);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 3rem 4rem;
+      border-bottom: 0.5px solid var(--dark-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(207,185,145,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.1s;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 300;
+      line-height: 1.15;
+      max-width: 700px;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.2s;
+    }
+
+    .hero h1 span { color: var(--gold); }
+
+    .hero p {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.35s;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.5s;
+    }
+
+    .btn-primary {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 24px;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      padding: 10px 24px;
+      background: transparent;
+      color: var(--gold);
+      border: 0.5px solid var(--gold);
+      border-radius: 4px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover { background: rgba(207,185,145,0.08); }
+
+    /* METRICS BAR */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--dark-mid);
+      border-bottom: 0.5px solid var(--dark-border);
+    }
+
+    .metric {
+      padding: 2rem 3rem;
+      border-right: 0.5px solid var(--dark-border);
+    }
+
+    .metric:last-child { border-right: none; }
+
+    .metric-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 5rem 3rem;
+      border-bottom: 0.5px solid var(--dark-border);
+    }
+
+    section.light {
+      background: var(--off-white);
+      color: var(--black);
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    section.light .section-label { color: var(--gold-faint); }
+
+    .section-title {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 300;
+      margin-bottom: 0.75rem;
+      max-width: 560px;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-bottom: 3rem;
+      line-height: 1.75;
+    }
+
+    section.light .section-title { color: var(--black); }
+    section.light .section-sub { color: #555; }
+
+    /* HOW IT WORKS */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--dark-border);
+      border: 0.5px solid var(--dark-border);
+    }
+
+    .step {
+      background: var(--dark);
+      padding: 2rem;
+      position: relative;
+    }
+
+    .step-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.25rem;
+      display: block;
+    }
+
+    .step h3 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .step p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* USE CASES */
+    .use-cases {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .use-case {
+      background: var(--white);
+      border-radius: 2px;
+      padding: 1.5rem;
+      border-left: 3px solid var(--gold);
+    }
+
+    .use-case-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--gold-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .use-case h3 {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--black);
+      margin-bottom: 0.5rem;
+    }
+
+    .use-case p {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* SPECS */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .spec-card {
+      border: 0.5px solid var(--dark-border);
+      padding: 1.5rem;
+    }
+
+    .spec-card-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding-bottom: 12px;
+      border-bottom: 0.5px solid var(--dark-border);
+      margin-bottom: 0;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 0.5px solid var(--dark-border);
+      font-size: 13px;
+    }
+
+    .spec-row:last-child { border-bottom: none; }
+    .spec-row span:first-child { color: var(--text-muted); }
+
+    .spec-val {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--black);
+      background: var(--gold);
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+
+    /* DEMO */
+    .demo-placeholder {
+      background: var(--dark-mid);
+      border: 0.5px solid var(--dark-border);
+      height: 360px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .demo-placeholder::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(207,185,145,0.05) 0%, transparent 70%);
+    }
+
+    .play-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .play-btn:hover { transform: scale(1.08); opacity: 0.9; }
+
+    .play-icon {
+      width: 0;
+      height: 0;
+      border-top: 11px solid transparent;
+      border-bottom: 11px solid transparent;
+      border-left: 18px solid var(--black);
+      margin-left: 5px;
+    }
+
+    .demo-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--gold-dim);
+      letter-spacing: 0.08em;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* TEAM */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .team-card {
+      border: 0.5px solid var(--dark-border);
+      padding: 1.5rem;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+
+    .team-card:hover { border-color: var(--gold-dim); }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      color: var(--gold);
+      margin: 0 auto 1rem;
+    }
+
+    .team-card h3 {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .team-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark-mid);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 0.5px solid var(--dark-border);
+    }
+
+    .footer-left {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--gold-dim);
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-right a {
+      font-size: 12px;
+      color: var(--gold-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-right a:hover { color: var(--gold); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { padding: 4rem 1.5rem 3rem; min-height: auto; }
+      .metrics { grid-template-columns: 1fr; }
+      .metric { border-right: none; border-bottom: 0.5px solid var(--dark-border); }
+      section { padding: 3rem 1.5rem; }
+      .steps { grid-template-columns: 1fr; }
+      .use-cases { grid-template-columns: 1fr; }
+      .specs-grid { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">TWINROVER</a>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#use-cases">Use cases</a></li>
+      <li><a href="#specs">Specs</a></li>
+      <li><a href="#team">Team</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-tag">Mallot Innovation Awards · Purdue University</div>
+    <h1>Autonomous 3D mapping for <span>complex environments</span></h1>
+    <p>TwinRover is a self-navigating robotic platform that generates high-fidelity spatial maps of indoor environments — no human operator required.</p>
+    <div class="hero-btns">
+      <a href="#demo" class="btn-primary">Watch demo</a>
+      <a href="https://github.com/sampra04/TwinRover" target="_blank" class="btn-secondary">View on GitHub</a>
+    </div>
+  </section>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-val">360°</div>
+      <div class="metric-label">Spatial coverage</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">Real-time</div>
+      <div class="metric-label">SLAM mapping</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">Fully</div>
+      <div class="metric-label">Autonomous navigation</div>
+    </div>
+  </div>
+
+  <section id="how-it-works">
+    <div class="section-label">How it works</div>
+    <h2 class="section-title">From deployment to digital twin</h2>
+    <p class="section-sub">TwinRover autonomously navigates unknown environments, builds a live map, and detects objects — all without any operator input.</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01 — Deploy</span>
+        <h3>Place & initialize</h3>
+        <p>Set the rover at the entry point. It initializes all sensors and immediately begins autonomous frontier exploration of the surrounding environment.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02 — Map</span>
+        <h3>Build the map</h3>
+        <p>Using SLAM Toolbox and LiDAR, the rover constructs a real-time occupancy grid map of the entire space as it navigates.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03 — Analyze</span>
+        <h3>Detect & log</h3>
+        <p>YOLOv8 object detection runs concurrently, identifying and logging items of interest throughout the mapped environment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="use-cases" class="light">
+    <div class="section-label">Use cases</div>
+    <h2 class="section-title">Built for demanding environments</h2>
+    <p class="section-sub">Anywhere accurate spatial awareness is critical and manual inspection is costly, slow, or dangerous.</p>
+    <div class="use-cases">
+      <div class="use-case">
+        <div class="use-case-label">Warehousing & logistics</div>
+        <h3>Inventory & floor mapping</h3>
+        <p>Generate up-to-date floor maps, track inventory locations, and detect layout changes — without disrupting active operations.</p>
+      </div>
+      <div class="use-case">
+        <div class="use-case-label">Mining & industrial inspection</div>
+        <h3>Hazardous environment mapping</h3>
+        <p>Map underground tunnels and hazardous industrial facilities where human entry carries significant risk to personnel.</p>
+      </div>
+      <div class="use-case">
+        <div class="use-case-label">Construction & architecture</div>
+        <h3>As-built documentation</h3>
+        <p>Capture spatial conditions at any stage of construction and compare against design models automatically.</p>
+      </div>
+      <div class="use-case">
+        <div class="use-case-label">Search & rescue</div>
+        <h3>Disaster site mapping</h3>
+        <p>Rapidly map disaster sites and relay structural information to first responders before any human entry.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="specs">
+    <div class="section-label">Technical specs</div>
+    <h2 class="section-title">What's under the hood</h2>
+    <p class="section-sub">Built on proven open-source robotics infrastructure with custom hardware integration.</p>
+    <div class="specs-grid">
+      <div class="spec-card">
+        <div class="spec-card-title">Software stack</div>
+        <div class="spec-row"><span>Framework</span><span class="spec-val">ROS 2</span></div>
+        <div class="spec-row"><span>Mapping</span><span class="spec-val">SLAM Toolbox</span></div>
+        <div class="spec-row"><span>Navigation</span><span class="spec-val">Nav2</span></div>
+        <div class="spec-row"><span>Exploration</span><span class="spec-val">Frontier Explorer</span></div>
+        <div class="spec-row"><span>Object detection</span><span class="spec-val">YOLOv8 NCNN</span></div>
+        <div class="spec-row"><span>Point cloud</span><span class="spec-val">KISS-ICP</span></div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-card-title">Hardware stack</div>
+        <div class="spec-row"><span>Compute</span><span class="spec-val">Raspberry Pi</span></div>
+        <div class="spec-row"><span>IMU</span><span class="spec-val">MPU6050</span></div>
+        <div class="spec-row"><span>Motor control</span><span class="spec-val">RoboClaw</span></div>
+        <div class="spec-row"><span>Odometry</span><span class="spec-val">EKF Fusion</span></div>
+        <div class="spec-row"><span>Sensor fusion</span><span class="spec-val">robot_localization</span></div>
+        <div class="spec-row"><span>OS</span><span class="spec-val">Ubuntu 24 / ROS 2</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="demo">
+    <div class="section-label">Demo</div>
+    <h2 class="section-title">See it in action</h2>
+    <p class="section-sub">Watch TwinRover autonomously map an environment from scratch in real time.</p>
+    <div class="demo-placeholder">
+      <div class="play-btn">
+        <div class="play-icon"></div>
+      </div>
+      <div class="demo-label">Demo video coming soon</div>
+    </div>
+  </section>
+
+  <section id="team" class="light">
+    <div class="section-label">Team</div>
+    <h2 class="section-title">Built at Purdue</h2>
+    <p class="section-sub">A multidisciplinary team of engineers working at the intersection of robotics, software, and autonomy.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar">S</div>
+        <h3>Samar</h3>
+        <p>Robotics & software lead</p>
+      </div>
+      <div class="team-card">
+        <div class="avatar">?</div>
+        <h3>Team member</h3>
+        <p>Role</p>
+      </div>
+      <div class="team-card">
+        <div class="avatar">?</div>
+        <h3>Team member</h3>
+        <p>Role</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">TwinRover · Purdue University · 2025</div>
+    <div class="footer-right">
+      <a href="https://github.com/sampra04/TwinRover" target="_blank">GitHub</a>
+      <a href="mailto:">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>
